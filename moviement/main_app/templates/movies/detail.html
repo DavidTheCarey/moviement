@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<p>{{ movie.title }}</p>
+<p>{{ movie.release_date }}</p>
+<p>{{ movie.review_score }}</p>
+<p>{{ movie.description }}</p>
+
+<h2>Takes </h2>
+<a href="{% url 'take_create' movie.id %}">Create a Take!</a>
+
+
+{% for take in movie.take_set.all %}
+<p>{{ take.title }}</p>
+<p>{{ take.themes }}</p>
+<p>{{ take.rating }}</p>
+<p>{{ take.description }}</p>
+
+
+{% endfor %}
+
+{% endblock %}

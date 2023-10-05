@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Index</h1>
+    {% for movie in movies %}
+
+    <a href="{% url 'detail' movie.id %}">{{ movie.title }}</a>
+    <p>{{ movie.release_date }}</p>
+    <p>{{ movie.review_score }}</p>
+    <p>{{ movie.description }}</p>
+
+    {% endfor %}
+
+{% endblock %}
