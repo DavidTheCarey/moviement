@@ -13,13 +13,14 @@
 
 
 {% for take in movie.take_set.all %}
-<p>{{ take.title }}</p>
-<p>{{ take.themes }}</p>
-<p>{{ take.rating }}</p>
-<p>{{ take.description }}</p>
-<a href="{% url 'user_profile' take.user_id %}">{{ take.user.username }}</a>
-
-
+    <a href="{% url 'user_profile' take.user_id %}">{{ take.user.username }}</a>
+    <p>{{ take.title }}</p>
+    <p>{{ take.themes }}</p>
+    <p>{{ take.rating }}</p>
+    <p>{{ take.description }}</p>
+    {% if take.user_id == user.id %}
+    <a href="{% url 'take_update' take.id %}">Edit Take</a>
+    {% endif %}
 {% endfor %}
 
 {% endblock %}
