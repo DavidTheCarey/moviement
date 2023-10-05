@@ -22,7 +22,7 @@
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'index' %}">Movies</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
-            <li><a href="{% url 'user_profile' user.id %}">Profile</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
           {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             <li><a href="{% url 'login' %}">Log In</a></li>
