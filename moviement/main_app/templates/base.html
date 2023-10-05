@@ -18,10 +18,15 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Moviement</a></li>
         </ul>
         <ul class="right">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'index' %}">Movies</a></li>
-          <li><a href="/">Movies</a></li>
-          <li><a href="/">Movies</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'index' %}">Movies</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            <li><a href="{% url 'user_profile' user.id %}">Profile</a></li>
+          {% else %}
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>

@@ -17,6 +17,7 @@
 <p>{{ take.themes }}</p>
 <p>{{ take.rating }}</p>
 <p>{{ take.description }}</p>
+<a href="{% url 'user_profile' take.user_id %}">{{ take.user.username }}</a>
 
 
 {% endfor %}
