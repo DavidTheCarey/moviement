@@ -106,13 +106,14 @@ def add_photo(request, take_id):
         except Exception as e:
             print('An error occurred uploading file to S3')
             print(e)
-    return redirect('detail', movie_id=request.POST.movie)
+    return redirect('detail', request.POST["movie"])
 
 def add_fav(request, movie_id):
     try:
-        profile = Profile.objects.get(user=request.user.id)
+        profile = Profile.objects.get(user_id=request.user.id)
     except:
-        profile = Profile(request.user)
-    profile.fav_movies += Movie.objects.get(id=movie_id)
+        profile = Profile(user=request.user)
+        profile.save()
+    profile.fav_movies.add(Movie.objects.get(id=movie_id))
     profile.save()
-    redirect('detail', movie_id=movie_id)
+    return redirect('detail', movie_id)

@@ -23,15 +23,16 @@
     <img class="shot_picture" src="{{shot.url}}">
     {% endfor %}
     {% if take.user_id == user.id %}
+    <a href="{% url 'take_update' take.id %}" class="btn btn-sm btn-dark">Edit Take</a>
+    <a href="{% url 'take_delete' take.id %}" class="btn btn-sm btn-dark m-2">Delete Take</a>
+    <h3 class="mt-4">Shots</h3>
     <form action="{% url 'add_photo' take.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
         {% csrf_token %}
         <input type="hidden" name="movie" value="{{movie.id}}">
         <input type="file" name="photo-file">
         <br><br>
-        <button type="submit" class="btn">Upload Photo</button>
+        <button type="submit" class="btn btn-sm btn-dark">Upload Photo</button>
     </form>
-    <a href="{% url 'take_update' take.id %}">Edit Take</a>
-    <a href="{% url 'take_delete' take.id %}">Delete Take</a>
     {% endif %}
 {% endfor %}
 
