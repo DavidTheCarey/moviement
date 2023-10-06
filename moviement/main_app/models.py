@@ -29,3 +29,10 @@ class Take(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'pk': self.movie.id})
+
+class Shot(models.Model):
+    url = models.CharField(max_length=200)
+    take = models.ForeignKey(Take, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for take_id: {self.take_id} @{self.url}"
