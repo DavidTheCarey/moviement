@@ -11,7 +11,8 @@ urlpatterns = [
     path('profile/signup/', views.signup, name="signup"),
     path('take/<int:pk>/delete/', views.DeleteTake.as_view(), name="take_delete"),
     # path('movies/<int:take_id>/update/', views.take_update, name="take_update")
-    path('movies/<int:pk>/update/', views.TakeUpdate.as_view(), name="take_update"),
-    path('movies/<int:take_id>/add_photo/', views.add_photo, name='add_photo'),
+    path('take/<int:pk>/update/', views.TakeUpdate.as_view(), name="take_update"),
+    path('take/<int:take_id>/add_photo/', views.add_photo, name='add_photo'),
+    path('movies/<int:movie_id>/add_fav', views.add_fav, name='add_fav'),
 
 ]
