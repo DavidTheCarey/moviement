@@ -4,6 +4,8 @@ from .models import *
 from .forms import TakeForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -16,6 +18,7 @@ def movies_index (request):
         'movies': movies
     })
 
+@login_required
 def take_create (request, movie_id):
     form = TakeForm
     return render(request, 'movies/take_create.html',{
@@ -23,7 +26,7 @@ def take_create (request, movie_id):
         'movie_id': movie_id
     })
 
-
+@login_required
 def take_add(request, movie_id):
     form = TakeForm(request.POST)
     if form.is_valid():
@@ -60,4 +63,22 @@ def profile(request, user_id=0):
         "user": user,
         "takes": takes
     })
+
+# def take_update(request, take_id):
+#     form = TakeForm
+#     return render(request, 'movies/take_create.html',{
+#         'form': form,
+#         'take_id': take_id
+#     })
+
+class TakeUpdate(UpdateView, LoginRequiredMixin):
+   model = Take
+   fields = ["title","themes","rating","description"]
+   template_name = 'movies/take_create.html'
+
+   def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        context["take_id"] = self.kwargs['pk']
+        return context
 

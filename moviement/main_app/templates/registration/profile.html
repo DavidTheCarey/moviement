@@ -3,4 +3,14 @@
 
 <p>{{ user.username }}</p>
 
+{% for take in takes %}
+
+    <p>Title: {{ take.title }}</p>
+    <p>Themes: {{ take.themes }}</p>
+    <p>Rating: {{ take.rating }}</p>
+    <p>Desc: {{ take.description }}</p>
+    
+
+{% endfor %}
+
 {% endblock %}

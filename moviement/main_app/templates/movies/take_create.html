@@ -1,7 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="{% url 'take_add' movie_id%}" method="POST">
+
+{% if take_id %}
+<h1>Edit</h1>
+{% else %}
+<h1>Create Review</h1>
+{% endif %}
+
+
+{% if take_id %} 
+<form action="{% url 'take_update' take_id %}" method="POST">
+{% else %}
+<form action="{% url 'take_add' movie_id %}" method="POST">
+ {% endif %}
+
     {% csrf_token %}
    <p> {{ form }}</p>
    <input type="submit" value="Submit Take">

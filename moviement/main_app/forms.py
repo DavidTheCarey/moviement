@@ -5,4 +5,3 @@ class TakeForm(ModelForm):
     class Meta:
         model = Take
         fields = ["title","themes","rating","description"]
-
