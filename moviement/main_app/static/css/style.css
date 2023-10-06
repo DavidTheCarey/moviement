@@ -77,3 +77,7 @@ nav {
         text-transform: uppercase;
     }
 }
+
+.shot_picture {
+    width: 50vh;
+}

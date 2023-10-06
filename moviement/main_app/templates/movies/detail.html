@@ -19,7 +19,7 @@
     <p>{{ take.rating }}</p>
     <p>{{ take.description }}</p>
     {% for shot in take.shot_set.all %}
-    <img class="responsive-img card-panel" src="{{shot.url}}">
+    <img class="shot_picture" src="{{shot.url}}">
     {% endfor %}
     {% if take.user_id == user.id %}
     <form action="{% url 'add_photo' take.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
