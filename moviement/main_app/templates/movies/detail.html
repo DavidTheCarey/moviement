@@ -19,8 +19,8 @@
     <p>{{ take.rating }}</p>
     <p>{{ take.description }}</p>
     {% if take.user_id == user.id %}
-    <a href="{% url 'take_update' take.id %}">Edit Take</a>
-    <a href="{% url 'take_delete' take.id %}">Delete Take</a>
+    <a href="{% url 'take_update' take.id %}" class="btn btn-sm btn-dark m-2">Edit Take</a>
+    <a href="{% url 'take_delete' take.id %}" class="btn btn-sm btn-dark m-2">Delete Take</a>
     {% endif %}
 {% endfor %}
 
