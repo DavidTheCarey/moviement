@@ -11,4 +11,5 @@ urlpatterns = [
     path('profile/signup/', views.signup, name="signup"),
     # path('movies/<int:take_id>/update/', views.take_update, name="take_update")
     path('movies/<int:pk>/update/', views.TakeUpdate.as_view(), name="take_update")
+
 ]

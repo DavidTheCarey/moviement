@@ -55,8 +55,8 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-def profile(request, user_id):
-    id = user_id if user_id else request.user.id
+def profile(request, user_id=0):
+    id = request.user.id if not user_id else user_id
     user = User.objects.get(id=id)
     takes = Take.objects.filter(user_id=id)
     return render(request, 'registration/profile.html', {
