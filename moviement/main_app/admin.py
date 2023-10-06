@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(Movie)
 admin.site.register(Take)
+admin.site.register(Shot)
