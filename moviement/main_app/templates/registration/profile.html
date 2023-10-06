@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<p>{{ user.username }}</p>
-
+{% if current_user.first_name  %}
+<h2>
+    {% if current_user.id == user.id %}Hi,{% endif %}
+    {{ current_user.first_name }}
+</h2>
+{% else %}
+<h2>{{ current_user }}</h2>
+{% endif %}
+<h3>Takes</h3>
 {% for take in takes %}
-
-    <p>Title: {{ take.title }}</p>
-    <p>Themes: {{ take.themes }}</p>
-    <p>Rating: {{ take.rating }}</p>
-    <p>Desc: {{ take.description }}</p>
-    
-
+<ul class="list-group list-group-flush">
+    <li class="list-group-item"><p class="profile-detail"><span>Title:</span> {{ take.title }}</p></li>
+    <li class="list-group-item"><p class="profile-detail"><span>Themes:</span> {{ take.themes }}</p></li>
+    <li class="list-group-item"><p class="profile-detail"><span>Rating:</span> {{ take.rating }}</p></li>
+    <li class="list-group-item"><p class="profile-detail"><span>Desc:</span> {{ take.description }}</p></li>
+</ul>
+    {% if take.user_id == user.id %}
+    <div class="take-actions">
+    <a href="{% url 'take_update' take.id %}" class="btn btn-small btn-dark m-2">Edit Take</a>
+    <a href="{% url 'take_delete' take.id %}" class="btn btn-small btn-dark m-2">Delete Take</a>
+    </div>
+    {% endif %}
 {% endfor %}
 
 {% endblock %}
