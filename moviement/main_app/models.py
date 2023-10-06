@@ -36,3 +36,8 @@ class Shot(models.Model):
 
     def __str__(self):
         return f"Photo for take_id: {self.take_id} @{self.url}"
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    fav_movies = models.ManyToManyField(Movie)
+    
