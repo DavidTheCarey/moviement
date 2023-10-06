@@ -107,7 +107,7 @@ def add_photo(request, take_id):
         except Exception as e:
             print('An error occurred uploading file to S3')
             print(e)
-    return redirect('detail', movie_id=request.POST.movie)
+    return redirect('detail', movie_id=movie_id)
 
 def add_fav(request, movie_id):
     try:
