@@ -60,7 +60,7 @@ def profile(request, user_id=0):
     user = User.objects.get(id=id)
     takes = Take.objects.filter(user_id=id)
     return render(request, 'registration/profile.html', {
-        "user": user,
+        "current_user": user,
         "takes": takes
     })
     
@@ -82,7 +82,6 @@ class TakeUpdate(UpdateView, LoginRequiredMixin):
    template_name = 'movies/take_create.html'
 
    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         context["take_id"] = self.kwargs['pk']
         return context
