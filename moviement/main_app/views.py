@@ -92,7 +92,6 @@ class TakeUpdate(UpdateView, LoginRequiredMixin):
 def add_photo(request, take_id):
     # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
-    movie_id = request.POST["movie"]
     if photo_file:
         s3 = boto3.client('s3')
         # need a unique "key" for S3 / needs image file extension too
@@ -107,7 +106,7 @@ def add_photo(request, take_id):
         except Exception as e:
             print('An error occurred uploading file to S3')
             print(e)
-    return redirect('detail', movie_id=movie_id)
+    return redirect('detail', request.POST["movie"])
 
 def add_fav(request, movie_id):
     try:
