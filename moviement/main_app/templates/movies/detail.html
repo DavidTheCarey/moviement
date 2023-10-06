@@ -18,7 +18,16 @@
     <p>{{ take.themes }}</p>
     <p>{{ take.rating }}</p>
     <p>{{ take.description }}</p>
+    {% for shot in take.shot_set.all %}
+    <img class="responsive-img card-panel" src="{{shot.url}}">
+    {% endfor %}
     {% if take.user_id == user.id %}
+    <form action="{% url 'add_photo' take.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+        {% csrf_token %}
+        <input type="file" name="photo-file">
+        <br><br>
+        <button type="submit" class="btn">Upload Photo</button>
+    </form>
     <a href="{% url 'take_update' take.id %}">Edit Take</a>
     <a href="{% url 'take_delete' take.id %}">Delete Take</a>
     {% endif %}
