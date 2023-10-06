@@ -63,6 +63,11 @@ def profile(request, user_id=0):
         "user": user,
         "takes": takes
     })
+    
+class DeleteTake(DeleteView, LoginRequiredMixin):
+    model = Take
+    template_name = 'movies/take_confirm_delete.html'
+    success_url = reverse('index')
 
 # def take_update(request, take_id):
 #     form = TakeForm
