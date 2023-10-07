@@ -1,8 +1,6 @@
-body, .footer {
-    max-width: 1200px;
-    width: 80%;
-    margin: 0 auto;
+body {
     background-color: #D9D9D9;
+    margin: 0 auto;
 }
 
 .footer a {
