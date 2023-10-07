@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Permanent+Marker&display=swap');
+
 body {
+    max-width: 1200px;
+    width: 80%;
+    margin: 0 auto;
     background-color: #D9D9D9;
     margin: 0 auto;
 }
@@ -79,4 +84,50 @@ nav {
 
 .shot_picture {
     width: 50vh;
+}
+
+.clapboard {
+    height: 25rem;
+    width: 50rem;
+    border: 3px solid black;
+
+}
+
+.info {
+    height: 11rem;
+    width: 50rem;
+    border: 1px solid black;
+
+}
+.info>.divider {
+    height: 11rem;
+    width: 25rem;
+    border: 1px solid black;
+    display: inline-block;
+    margin: -.2rem;
+    /* align-content: center;
+    justify-content: center; */
+}
+
+.info>div>.key {
+    font-size: 2rem;
+    display: block;
+    height: 2.1rem;
+    margin: auto, 0;
+    text-align: center;
+}
+
+.info>div>.item {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 5rem;
+    display: block;
+    height: 5.1rem;
+    margin: auto;
+    text-align: center;
+}
+
+.desc {
+    height: 12.5rem;
+    width: 50rem;
+    border: 1px solid black;
 }

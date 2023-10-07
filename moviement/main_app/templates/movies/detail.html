@@ -1,12 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section class="clapboard" >
+    <section class="title">
+        <p>Title: {{ movie.title }}</p>
+    </section>
+    
+    <section class="info">
+        <div class="divider">
+            <div class="key">Release Date: </div>
+            <div class="item">{{ movie.release_date }}</div>
+        </div>
+
+        <div class="divider">
+            <div class="key">Score: </div>
+            <div class="item">{{ movie.review_score }}</div>
+        </div>
+        
+    </section>
+
+    <section class="desc">
+        <div><p>Description: {{ movie.description }}</p></div>
+    </section>
+</section>
 
 
-<p>{{ movie.title }}</p>
-<p>{{ movie.release_date }}</p>
-<p>{{ movie.review_score }}</p>
-<p>{{ movie.description }}</p>
+
+
 <a href="{% url 'add_fav' movie.id %}">Favorite</a>
 
 <h2>Takes </h2>
