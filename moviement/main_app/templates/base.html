@@ -17,9 +17,9 @@
 <body>
   <div class="row">
     <div class="col-md-4 sidepane">{% block sidepane %}&nbsp;{% endblock %}</div>
-    <div class="col-md-8">
+    <div class="col-md-8 px-0">
       <nav class="navbar navbar-expand-lg py-0">
-        <div class="container-fluid">
+        <div class="container-fluid px-0">
           <a class="navbar-brand" href="#">Moviement</a>
           <button
             class="navbar-toggler"
@@ -51,7 +51,7 @@
           </div>
         </div>
       </nav>
-      <div class="row my-4 mx-4">
+      <div class="row my-4 mx-4 content">
         <div class="col-md-12">
           {% block content %} {% endblock %}
         </div>
