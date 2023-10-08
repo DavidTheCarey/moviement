@@ -8,7 +8,7 @@ body {
     margin: 0 auto;
 }
 
-.fav-link, .take-item {
+.fav-link, .take-item, .movie-item {
     text-decoration: none;
 }
 
