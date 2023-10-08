@@ -8,6 +8,10 @@ body {
     margin: 0 auto;
 }
 
+.fav-link {
+    text-decoration: none;
+}
+
 .footer a {
     font-size: 1rem;
 }
@@ -40,7 +44,7 @@ nav {
     background-color: #000000;
     color: #ffffff;
     min-height: 100vh;
-    height: 100%;
+    height: auto;
 }
 
 .navbar-brand {
@@ -87,17 +91,14 @@ nav {
 }
 
 .clapboard {
-    height: 25rem;
+    height: fit-content;
     width: 50rem;
     border: 3px solid black;
-
 }
 
 .info {
     height: 11rem;
-    width: 50rem;
-    border: 1px solid black;
-
+    width: 100%;
 }
 .info>.divider {
     height: 11rem;
@@ -129,5 +130,17 @@ nav {
 .desc {
     height: 12.5rem;
     width: 50rem;
-    border: 1px solid black;
+}
+
+.title>.key {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.desc {
+    padding: 0.5rem;
+}
+
+.desc p {
+    font-size: 1.5rem;
 }

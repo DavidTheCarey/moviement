@@ -3,7 +3,7 @@
 {% block content %}
 <section class="clapboard" >
     <section class="title">
-        <p>Title: {{ movie.title }}</p>
+        <p class="key">{{ movie.title }}</p>
     </section>
     
     <section class="info">
@@ -18,22 +18,29 @@
         </div>
         
     </section>
-
-    <section class="desc">
-        <div><p>Description: {{ movie.description }}</p></div>
+    <section class="desc mb-3">
+        <div><p>{{ movie.description }}</p></div>
+        <div class="favs mb-4">
+        <a href="{% url 'add_fav' movie.id %}" class="badge rounded-pill text-bg-dark me-2 fav-link">Favorite {% if user_favs %}({{ user_favs.count }}){% endif %}</a>
+        {% for fave in user_favs.all %}
+        {% if not forloop.last and not forloop.first and user_favs.count > 1 %}
+        <span>,</span>
+        {% elif forloop.last and user_favs.count > 1 %}
+        <span>and</span>
+        {% endif %}
+            <a href="{% url 'user_profile' fave.user_id %}">{{ fave }}</a>
+            {% empty %}
+            <span>No favorites yet. Be the first?</span>
+        {% endfor %}
+        </div>
     </section>
 </section>
-
-
-
-
-<a href="{% url 'add_fav' movie.id %}">Favorite</a>
-
-<h2>Takes </h2>
-<a href="{% url 'take_create' movie.id %}">Create a Take!</a>
-
-
+<div>
+<h2 class="my-4">Takes</h2>
+<a href="{% url 'take_create' movie.id %}" class="btn btn-sm btn-dark mb-4">Create a Take!</a>
+<ul class="list-group">
 {% for take in movie.take_set.all %}
+<li class="list-group-item border-black">
     <a href="{% url 'user_profile' take.user_id %}">{{ take.user.username }}</a>
     <p>{{ take.title }}</p>
     <p>{{ take.themes }}</p>
@@ -45,7 +52,7 @@
     {% if take.user_id == user.id %}
     <a href="{% url 'take_update' take.id %}" class="btn btn-sm btn-dark">Edit Take</a>
     <a href="{% url 'take_delete' take.id %}" class="btn btn-sm btn-dark m-2">Delete Take</a>
-    <h3 class="mt-4">Shots</h3>
+    <h5 class="mt-4">Shots</h5>
     <form action="{% url 'add_photo' take.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
         {% csrf_token %}
         <input type="hidden" name="movie" value="{{movie.id}}">
@@ -54,6 +61,8 @@
         <button type="submit" class="btn btn-sm btn-dark">Upload Photo</button>
     </form>
     {% endif %}
+</li>
 {% endfor %}
-
+</ul>
+</div>
 {% endblock %}

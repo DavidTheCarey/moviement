@@ -43,6 +43,10 @@ def take_add(request, movie_id):
 class MovieDetail (DetailView):
     model = Movie
     template_name = "movies/detail.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user_favs"] = Profile.objects.filter(fav_movies = self.kwargs['pk'])
+        return context
 
 def signup(request):
   error_message = ''
@@ -114,6 +118,9 @@ def add_fav(request, movie_id):
     except:
         profile = Profile(user=request.user)
         profile.save()
-    profile.fav_movies.add(Movie.objects.get(id=movie_id))
+    if not profile.fav_movies.filter(id=movie_id):
+        profile.fav_movies.add(Movie.objects.get(id=movie_id))
+    else:
+        profile.fav_movies.remove(Movie.objects.get(id=movie_id))
     profile.save()
     return redirect('detail', movie_id)
