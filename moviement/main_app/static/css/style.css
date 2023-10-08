@@ -58,6 +58,10 @@ nav {
   min-width: 400px;
 }
 
+.favs {
+    font-size: 1rem;
+}
+
 .list-group-item {
   background-color: transparent;
 }
@@ -77,6 +81,11 @@ nav {
   .sidepane {
     display: none;
   }
+
+  .confirm-delete {
+    display: inline;
+  }
+
   .navbar-nav li {
     background-color: #000000;
     margin: 0;
