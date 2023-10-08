@@ -41,10 +41,10 @@
 <ul class="list-group">
 {% for take in movie.take_set.all %}
 <li class="list-group-item border-black">
-    <a href="{% url 'user_profile' take.user_id %}">{{ take.user.username }}</a>
-    <p>{{ take.title }}</p>
-    <p>{{ take.themes }}</p>
-    <p>{{ take.rating }}</p>
+    <h5>{{ take.title }}</h5>
+    <a href="{% url 'user_profile' take.user_id %}" class="take-item"><span class="badge text-bg-light">by {{ take.user.username }}</span></a>
+    <p class="badge text-bg-secondary">Themes: {{ take.themes }}</p>
+    <p class="badge text-bg-secondary">Rating: {{ take.rating }}</p>
     <p>{{ take.description }}</p>
     {% for shot in take.shot_set.all %}
     <img class="shot_picture" src="{{shot.url}}">
