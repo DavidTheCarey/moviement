@@ -48,8 +48,10 @@
     <img class="shot_picture" src="{{shot.url}}">
     {% endfor %}
     {% if take.user_id == user.id %}
-    <a href="{% url 'take_update' take.id %}" class="btn btn-sm btn-dark">Edit Take</a>
-    <a href="{% url 'take_delete' take.id %}" class="btn btn-sm btn-dark m-2">Delete Take</a>
+    <div class="my-2">
+    <a href="{% url 'take_update' take.id %}" class="badge take-item text-bg-dark">Edit Take</a>
+    <a href="{% url 'take_delete' take.id %}" class="badge text-bg-dark take-item mx-2">Delete Take</a>
+    </div>
     <h5 class="mt-4">Shots</h5>
     <form action="{% url 'add_photo' take.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
         {% csrf_token %}

@@ -3,9 +3,9 @@
 {% block content %}
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete {{ take.title }} on {{ take.movie }}?</h3>
+<h4>Are you sure you want to delete {{ take.title }} on {{ take.movie }}?</h4>
 
-<form method="post">
+<form method="post" class="my-4">
     {% csrf_token %}
     <input type="submit" class="btn btn-sm btn-dark" value="Yes, delete it" />
     <a href="{% url 'index' %}"><button class="btn btn-sm btn-dark">Cancel</button></a>

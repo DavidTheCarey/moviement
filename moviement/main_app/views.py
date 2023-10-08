@@ -86,7 +86,7 @@ class DeleteTake(DeleteView, LoginRequiredMixin):
 
 class TakeUpdate(UpdateView, LoginRequiredMixin):
    model = Take
-   fields = ["title","themes","rating","description"]
+   form_class = TakeForm
    template_name = 'movies/take_create.html'
 
    def get_context_data(self, **kwargs):
