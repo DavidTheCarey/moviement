@@ -14,8 +14,10 @@
 - Django
 - Bootstrap
 ## Getting Started
-1. Deployed App:
+1. Deployed App: https://moviement-q3u3.onrender.com
 2. Trello Board: https://trello.com/b/3YJpevCR/project-3
 3. Pitch Deck: https://docs.google.com/presentation/d/19n6-Noyh7nCM5l_o96-8aASUXFcIrzONOFyFNd1wN5Q/edit#slide=id.gc6f59039d_0_0
 ## Icebox
-IMDB API - For auto movie fill in
+- IMDB API - To autofill information for users and give the ability to search movies.
+- Add a dark mode for people who dislike looking at a bright screen.
+- Add a section to the profile screen so that people can add a bio about themselves.
