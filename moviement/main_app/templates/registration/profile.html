@@ -6,27 +6,25 @@
     <section class="title">
         <p class="key">Profile</p>
     </section>
-    <section class="info">
+    <section class="info-pro">
         <div class="divider">
-            <div class="key-pro-user">USER NAME</div>
-            <div class="item-pro-user">{{ current_user }}</div>
+            <div class="key-pro-user">USER NAME <span>{{ current_user }}</span></div>
         </div>
         <div class="divider">
-            <div class="key">FAVORITE MOVIES </div>
-            <ul>
-                {% for fav in profile.fav_movies.all %}
-                <li class="item-pro-li">{{fav.title}}</li>
-                {% endfor %}
-            </ul>
+            <div class="key-pro-user">FAVORITE MOVIES 
+                <span>
+                    {% for fav in profile.fav_movies.all %}
+                    {{fav.title}},
+                    {% endfor %}
+                </span>
+            </div>
+               
         </div>
-    </section>
-    <section class="desc-mb-3">
-        <div class="desc-title">BIO </div>
     </section>
 </section>
 
+<h3 class="my-3">{% if current_user.id == user.id %} My {% else %} {{ current_user.username }} {% endif %} Takes</h3>
 
-<h3 class="my-3">Takes</h3>
 <ul class="list-group">
   {% for take in takes %}
   <li class="list-group-item border-black">
