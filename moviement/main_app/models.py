@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.validators import MaxValueValidator
 
 
 # Create your models here.
@@ -18,7 +19,7 @@ class Movie(models.Model):
 class Take(models.Model):
     title = models.CharField(max_length=250)
     themes = models.CharField(max_length=250)
-    rating = models.IntegerField()
+    rating = models.IntegerField(validators=[MaxValueValidator(10)])
     # user_likes
     description = models.TextField(max_length=3000)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
