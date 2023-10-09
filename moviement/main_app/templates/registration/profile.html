@@ -5,6 +5,16 @@
 {% else %}
 <h2>{{ current_user }}</h2>
 {% endif %}
+
+{% if profile.fav_movies.all %}
+<h3>Fav Movies: </h3>
+{% for fav in profile.fav_movies.all %}
+<p> {{fav.title}} </p>
+{% endfor %}
+
+{% endif %}
+
+
 <h3 class="my-3">Takes</h3>
 <ul class="list-group">
   {% for take in takes %}

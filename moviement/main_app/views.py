@@ -64,10 +64,14 @@ def profile(request, user_id=0):
     id = request.user.id if not user_id else user_id
     user = User.objects.get(id=id)
     takes = Take.objects.filter(user_id=id)
+    profile = Profile.objects.get(user=user)
+    print(profile)
     return render(request, 'registration/profile.html', {
         "current_user": user,
-        "takes": takes
+        "takes": takes,
+        "profile": profile
     })
+
 
 def deleteShots(object):
     s3 = boto3.client('s3')
@@ -83,7 +87,7 @@ def deleteShots(object):
                 print('An error occurred deleting shot from S3')
                 print(e)
 
-class DeleteTake(DeleteView, LoginRequiredMixin):
+class DeleteTake(LoginRequiredMixin, DeleteView):
     model = Take
     template_name = 'movies/take_confirm_delete.html'
     def get_success_url(self):
@@ -97,7 +101,7 @@ class DeleteTake(DeleteView, LoginRequiredMixin):
 #         'take_id': take_id
 #     })
 
-class TakeUpdate(UpdateView, LoginRequiredMixin):
+class TakeUpdate(LoginRequiredMixin, UpdateView):
    model = Take
    form_class = TakeForm
    template_name = 'movies/take_create.html'
@@ -107,6 +111,7 @@ class TakeUpdate(UpdateView, LoginRequiredMixin):
         context["take_id"] = self.kwargs['pk']
         return context
 
+@login_required
 def add_photo(request, take_id):
     # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
@@ -126,6 +131,7 @@ def add_photo(request, take_id):
             print(e)
     return redirect('detail', request.POST["movie"])
 
+@login_required
 def add_fav(request, movie_id):
     try:
         profile = Profile.objects.get(user_id=request.user.id)
