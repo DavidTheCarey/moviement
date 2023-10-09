@@ -9,9 +9,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-# Create your views here.
-
+            
 def home (request):
     return render(request, 'home.html')
 
@@ -70,11 +68,26 @@ def profile(request, user_id=0):
         "current_user": user,
         "takes": takes
     })
-    
+
+def deleteShots(object):
+    s3 = boto3.client('s3')
+    url_prefix= os.environ['S3_BASE_URL'] + os.environ['S3_BUCKET'] + '/'
+    shots = Shot.objects.filter(take_id=object.id)
+    if shots:
+        for shot in shots:
+            try:
+                key = shot.url.replace(url_prefix,'')
+                s3.delete_object(Bucket=os.environ['S3_BUCKET'], Key=key)
+                print(f"Deleted {key} from S3")
+            except Exception as e:
+                print('An error occurred deleting shot from S3')
+                print(e)
+
 class DeleteTake(DeleteView, LoginRequiredMixin):
     model = Take
     template_name = 'movies/take_confirm_delete.html'
     def get_success_url(self):
+        deleteShots(self.object)
         return reverse('detail', kwargs={'pk': self.object.movie_id})
 
 # def take_update(request, take_id):
