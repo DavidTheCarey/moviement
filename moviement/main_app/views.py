@@ -9,9 +9,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-# Create your views here.
-
+            
 def home (request):
     return render(request, 'home.html')
 
@@ -43,6 +41,10 @@ def take_add(request, movie_id):
 class MovieDetail (DetailView):
     model = Movie
     template_name = "movies/detail.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user_favs"] = Profile.objects.filter(fav_movies = self.kwargs['pk'])
+        return context
 
 def signup(request):
   error_message = ''
@@ -66,11 +68,27 @@ def profile(request, user_id=0):
         "current_user": user,
         "takes": takes
     })
-    
+
+def deleteShots(object):
+    s3 = boto3.client('s3')
+    url_prefix= os.environ['S3_BASE_URL'] + os.environ['S3_BUCKET'] + '/'
+    shots = Shot.objects.filter(take_id=object.id)
+    if shots:
+        for shot in shots:
+            try:
+                key = shot.url.replace(url_prefix,'')
+                s3.delete_object(Bucket=os.environ['S3_BUCKET'], Key=key)
+                print(f"Deleted {key} from S3")
+            except Exception as e:
+                print('An error occurred deleting shot from S3')
+                print(e)
+
 class DeleteTake(DeleteView, LoginRequiredMixin):
     model = Take
     template_name = 'movies/take_confirm_delete.html'
-    success_url = '/movies/'
+    def get_success_url(self):
+        deleteShots(self.object)
+        return reverse('detail', kwargs={'pk': self.object.movie_id})
 
 # def take_update(request, take_id):
 #     form = TakeForm
@@ -81,7 +99,7 @@ class DeleteTake(DeleteView, LoginRequiredMixin):
 
 class TakeUpdate(UpdateView, LoginRequiredMixin):
    model = Take
-   fields = ["title","themes","rating","description"]
+   form_class = TakeForm
    template_name = 'movies/take_create.html'
 
    def get_context_data(self, **kwargs):
@@ -114,6 +132,9 @@ def add_fav(request, movie_id):
     except:
         profile = Profile(user=request.user)
         profile.save()
-    profile.fav_movies.add(Movie.objects.get(id=movie_id))
+    if not profile.fav_movies.filter(id=movie_id):
+        profile.fav_movies.add(Movie.objects.get(id=movie_id))
+    else:
+        profile.fav_movies.remove(Movie.objects.get(id=movie_id))
     profile.save()
     return redirect('detail', movie_id)

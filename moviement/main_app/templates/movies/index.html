@@ -1,15 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
-    <h1>All Movies</h1>
-    {% for movie in movies %}
-
-    <a href="{% url 'detail' movie.id %}">{{ movie.title }}</a>
-    <p>{{ movie.release_date }}</p>
-    <p>{{ movie.review_score }}</p>
-    <p>{{ movie.description }}</p>
-
-    {% endfor %}
-
+<h1>All Movies</h1>
+<div class="list-group my-4">
+  {% for movie in movies %}
+  <a href="{% url 'detail' movie.id %}" class="movie-item list-group-item border-black">
+      <h4>{{ movie.title }}</h4>
+      <p class="badge text-bg-dark">Release Year: {{ movie.release_date }}</p>
+      <p class="badge text-bg-dark">Rating: {{ movie.review_score }}</p>
+      <p>{{ movie.description }}</p>
+  </a>
+  {% endfor %}
+</div>
 {% endblock %}

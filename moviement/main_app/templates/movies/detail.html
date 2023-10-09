@@ -3,12 +3,12 @@
 {% block content %}
 <section class="clapboard" >
     <section class="title">
-        <p>Title: {{ movie.title }}</p>
+        <p class="key">{{ movie.title }}</p>
     </section>
     
     <section class="info">
         <div class="divider">
-            <div class="key">Release Date: </div>
+            <div class="key">Release Year: </div>
             <div class="item">{{ movie.release_date }}</div>
         </div>
 
@@ -18,42 +18,51 @@
         </div>
         
     </section>
-
-    <section class="desc">
-        <div><p>Description: {{ movie.description }}</p></div>
+    <section class="desc mb-3">
+        <div><p>{{ movie.description }}</p></div>
+        <div class="favs">
+        <a href="{% url 'add_fav' movie.id %}" class="badge rounded-pill text-bg-dark me-2 fav-link">Favorite {% if user_favs %}({{ user_favs.count }}){% endif %}</a>
+        {% for fave in user_favs.all %}
+        {% if not forloop.last and not forloop.first and user_favs.count > 1 %},
+        {% elif forloop.last and user_favs.count > 1 %}and
+        {% endif %}
+            <a href="{% url 'user_profile' fave.user_id %}">{{ fave }}</a>
+            {% empty %}
+            <span>No favorites yet. Be the first?</span>
+        {% endfor %}
+        </div>
     </section>
 </section>
-
-
-
-
-<a href="{% url 'add_fav' movie.id %}">Favorite</a>
-
-<h2>Takes </h2>
-<a href="{% url 'take_create' movie.id %}">Create a Take!</a>
-
-
+<div>
+<h2 class="my-4">Takes</h2>
+<a href="{% url 'take_create' movie.id %}" class="btn btn-sm btn-dark mb-4">Create a Take!</a>
+<ul class="list-group">
 {% for take in movie.take_set.all %}
-    <a href="{% url 'user_profile' take.user_id %}">{{ take.user.username }}</a>
-    <p>{{ take.title }}</p>
-    <p>{{ take.themes }}</p>
-    <p>{{ take.rating }}</p>
+<li class="list-group-item border-black">
+    <h4>{{ take.title }}</h4>
+    <a href="{% url 'user_profile' take.user_id %}" class="take-item"><span class="badge text-bg-light">by {{ take.user.username }}</span></a>
+    <p class="badge text-bg-secondary">Themes: {{ take.themes }}</p>
+    <p class="badge text-bg-secondary">Rating: {{ take.rating }}</p>
     <p>{{ take.description }}</p>
     {% for shot in take.shot_set.all %}
     <img class="shot_picture" src="{{shot.url}}">
     {% endfor %}
     {% if take.user_id == user.id %}
-    <a href="{% url 'take_update' take.id %}" class="btn btn-sm btn-dark">Edit Take</a>
-    <a href="{% url 'take_delete' take.id %}" class="btn btn-sm btn-dark m-2">Delete Take</a>
-    <h3 class="mt-4">Shots</h3>
+    <div class="my-2">
+    <a href="{% url 'take_update' take.id %}" class="badge take-item text-bg-dark">Edit Take</a>
+    <a href="{% url 'take_delete' take.id %}" class="badge text-bg-dark take-item mx-2">Delete Take</a>
+    </div>
+    <h5 class="mt-4">Shots</h5>
     <form action="{% url 'add_photo' take.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
         {% csrf_token %}
         <input type="hidden" name="movie" value="{{movie.id}}">
         <input type="file" name="photo-file">
         <br><br>
-        <button type="submit" class="btn btn-sm btn-dark">Upload Photo</button>
+        <button type="submit" class="btn btn-sm btn-dark mb-3">Upload Photo</button>
     </form>
     {% endif %}
+</li>
 {% endfor %}
-
+</ul>
+</div>
 {% endblock %}
