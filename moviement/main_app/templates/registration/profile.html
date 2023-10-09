@@ -11,6 +11,7 @@
             <div class="key-pro-user">USER NAME <span>{{ current_user }}</span></div>
         </div>
         <div class="divider">
+          {% if profile %}
             <div class="key-pro-user">FAVORITE MOVIES 
                 <span>
                     {% for fav in profile.fav_movies.all %}
@@ -18,6 +19,7 @@
                     {% endfor %}
                 </span>
             </div>
+            {% endif %}
                
         </div>
     </section>

@@ -64,8 +64,11 @@ def profile(request, user_id=0):
     id = request.user.id if not user_id else user_id
     user = User.objects.get(id=id)
     takes = Take.objects.filter(user_id=id)
-    profile = Profile.objects.get(user=user)
-    print(profile)
+    try:
+        profile = Profile.objects.get(user=user)
+    except:
+        profile = Profile(user=user)
+        profile.save()
     return render(request, 'registration/profile.html', {
         "current_user": user,
         "takes": takes,
