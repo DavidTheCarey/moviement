@@ -112,10 +112,10 @@ nav {
 .clapboard {
   height: fit-content;
   margin-top: -0.57rem;
-  margin-left: 2rem;
-  width: 97.5%;
+  margin-left: 0rem;
+  width: 70%;
   min-width: 400px;
-  transform: scale(1.1);
+  transform: scale(1.0);
   border: 3px solid black;
 }
 
@@ -127,13 +127,21 @@ nav {
 .key-pro-user {
     font-size: 32px;
     font-family: 'Mukta', sans-serif;
-    text-align: center;
+    text-align: left;
+}
+
+.key-pro-user > span {
+    font-size: 35px;
+    font-family: "Permanent Marker", cursive;
+    text-align: left;
+    border-bottom: 3px solid black;
+    padding: 0 30px 0 30px;
 }
 
 .item-pro-user {
     font-size: 35px;
     font-family: "Permanent Marker", cursive;
-    text-align: center;
+    text-align: left;
 }
 
 .info {
@@ -175,6 +183,23 @@ nav {
   text-align: center;
 }
 
+.info-pro {
+    height: 11rem;
+    width: 100%;
+    text-align: left;
+    padding-bottom: 200px;
+}
+
+.info-pro > .divider {
+    height: 11rem;
+    width: 0;
+    /* border: 1px solid black; */
+    display: inline;
+    /* margin-left: -30; */
+    /* align-content: center;
+      justify-content: center; */
+}
+
 .title > .key {
   font-size: 2rem;
   text-align: center;
@@ -204,6 +229,7 @@ nav {
 .desc-mb-3>.title-desc {
     font-family: 'Coming Soon', cursive;
     font-size: 20px;
+    padding-left: 10px
 }
 
 .favs {
