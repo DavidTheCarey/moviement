@@ -35,8 +35,8 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav">
               {% if user.is_authenticated %}
-              <li>
-                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+              <li style="transform: skewX(0deg); border-radius: 30px 0 0 0;">
+                <a class="nav-link" aria-current="page" href="{% url 'home' %}" style="transform: skewX(0deg);">Home</a>
               </li>
               <li><a class="nav-link" href="{% url 'index' %}">Movies</a></li>
               <li><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
