@@ -32,7 +32,6 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['moviement-gp.onrender.com', 'localhost', 'moviement-q3u3.onrender.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
