@@ -70,6 +70,10 @@ nav {
   max-width: 200px;
 }
 
+.content {
+  width: 70%;
+}
+
 @media (max-width: 1000px) {
   .navbar-brand {
     display: block;
@@ -102,7 +106,6 @@ nav {
   }
   .content {
     margin: 2rem auto !important;
-    width: 70%;
   }
 }
 
