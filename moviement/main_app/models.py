@@ -35,7 +35,7 @@ class Shot(models.Model):
     take = models.ForeignKey(Take, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Photo for take_id: {self.take_id} @{self.url}"
+        return f"Shot: {self.id}, Take: {self.take_id} @{self.url}"
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
