@@ -1,18 +1,29 @@
 {% extends 'base.html' %} {% block content %} {% if current_user.first_name %}
-<h2>
-  {% if current_user.id == user.id %}Hi,{% endif %} {{ current_user.first_name }}
-</h2>
-{% else %}
-<h2>{{ current_user }}</h2>
-{% endif %}
-
-{% if profile.fav_movies.all %}
-<h3>Fav Movies: </h3>
-{% for fav in profile.fav_movies.all %}
-<p> {{fav.title}} </p>
-{% endfor %}
 
 {% endif %}
+
+<section class="clapboard" >
+    <section class="title">
+        <p class="key">Profile</p>
+    </section>
+    <section class="info">
+        <div class="divider">
+            <div class="key-pro-user">USER NAME</div>
+            <div class="item-pro-user">{{ current_user }}</div>
+        </div>
+        <div class="divider">
+            <div class="key">FAVORITE MOVIES </div>
+            <ul>
+                {% for fav in profile.fav_movies.all %}
+                <li class="item-pro-li">{{fav.title}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    <section class="desc-mb-3">
+        <div class="desc-title">BIO </div>
+    </section>
+</section>
 
 
 <h3 class="my-3">Takes</h3>
@@ -52,3 +63,5 @@
 {% endfor %} 
 </ul>
 {% endblock %}
+
+

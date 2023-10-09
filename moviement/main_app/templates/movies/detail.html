@@ -8,28 +8,29 @@
     
     <section class="info">
         <div class="divider">
-            <div class="key">Release Year: </div>
+            <div class="key">RELEASE YEAR </div>
             <div class="item">{{ movie.release_date }}</div>
         </div>
 
         <div class="divider">
-            <div class="key">Score: </div>
+            <div class="key">SCORE </div>
             <div class="item">{{ movie.review_score }}</div>
         </div>
         
     </section>
-    <section class="desc mb-3">
-        <div><p>{{ movie.description }}</p></div>
+    <section class="desc-mb-3">
+        <div class="desc-title">DESCRIPTION </div>
+        <div class="title-desc"><p>{{ movie.description }}</p></div>
         <div class="favs">
-        <a href="{% url 'add_fav' movie.id %}" class="badge rounded-pill text-bg-dark me-2 fav-link">Favorite {% if user_favs %}({{ user_favs.count }}){% endif %}</a>
-        {% for fave in user_favs.all %}
-        {% if not forloop.last and not forloop.first and user_favs.count > 1 %},
-        {% elif forloop.last and user_favs.count > 1 %}and
-        {% endif %}
-            <a href="{% url 'user_profile' fave.user_id %}">{{ fave }}</a>
-            {% empty %}
-            <span>No favorites yet. Be the first?</span>
-        {% endfor %}
+            <a href="{% url 'add_fav' movie.id %}" class="badge rounded-pill text-bg-dark me-2 fav-link">⭐ {% if user_favs %}({{ user_favs.count }}){% endif %}</a>
+            {% for fave in user_favs.all %}
+            {% if not forloop.last and not forloop.first and user_favs.count > 1 %},
+            {% elif forloop.last and user_favs.count > 1 %}and
+            {% endif %}
+                <a href="{% url 'user_profile' fave.user_id %}">{{ fave }}</a>
+                {% empty %}
+                <span>Favorite this movie!</span>
+            {% endfor %}
         </div>
     </section>
 </section>
