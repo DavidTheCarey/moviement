@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Permanent+Marker&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@700&display=swap');
 body {
   max-width: 1200px;
   width: 80%;
@@ -111,9 +111,29 @@ nav {
 
 .clapboard {
   height: fit-content;
-  width: 100%;
+  margin-top: -0.57rem;
+  margin-left: 2rem;
+  width: 97.5%;
   min-width: 400px;
+  transform: scale(1.1);
   border: 3px solid black;
+}
+
+.item-pro-li {
+    font-size: 30px;
+    font-family: "Permanent Marker", cursive;
+}
+
+.key-pro-user {
+    font-size: 32px;
+    font-family: 'Mukta', sans-serif;
+    text-align: center;
+}
+
+.item-pro-user {
+    font-size: 35px;
+    font-family: "Permanent Marker", cursive;
+    text-align: center;
 }
 
 .info {
@@ -166,3 +186,27 @@ nav {
   height: fit-content;
   width: 100%;
 }
+
+.clapboard>.title {
+    font-family: "Permanent Marker", cursive;
+}
+
+.divider>.key {
+    font-family: 'Mukta', sans-serif;
+}
+
+.desc-mb-3>.desc-title {
+    text-align: center;
+    font-family: 'Mukta', sans-serif;
+    font-size: 32px;
+}
+
+.desc-mb-3>.title-desc {
+    font-family: 'Coming Soon', cursive;
+    font-size: 20px;
+}
+
+.favs {
+    text-align: center;
+}
+

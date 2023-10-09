@@ -1,6 +1,7 @@
 from django.forms import ModelForm, TextInput, Textarea, NumberInput
 from .models import Take
 
+
 class TakeForm(ModelForm):
     class Meta:
         model = Take
@@ -18,6 +19,8 @@ class TakeForm(ModelForm):
             }),
             'rating':  NumberInput(attrs={
                 'class': style_classes,
+                'max': 10,
+                'min': 0
             }),
             'description':  Textarea(attrs={
                 'class': style_classes,
