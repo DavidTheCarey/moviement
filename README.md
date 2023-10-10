@@ -5,7 +5,17 @@
 - Sweeney Corniea - Designer/Database Manager
 - David Carey - GitHub Manager/Scrum Master
 - Matthew Peete - Documentor/Database Manager
-## Screenshots
+## Screenshots ##
+Here's some screenshots of the application! <br />
+Movie Index:
+![Movie Index](img/Project3-index-page.PNG) <br />
+Movie Detail:
+![Movie Detail](img/Project3-show-page.PNG) <br />
+Create a Take:
+![Create A Take](img/Project3-create-page.PNG)
+Profile:
+![Profile Page](img/Project3-profile-page.PNG) <br />
+
 ## Technologies Used
 - Python
 - HTML
