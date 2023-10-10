@@ -25,7 +25,7 @@
     </section>
 </section>
 {% if takes %}
-<h3 class="my-3">{% if current_user.id == user.id %} My {% else %} {{ current_user.username }} {% endif %} Takes</h3>
+<h3 class="my-4">{% if current_user.id == user.id %} My {% else %} {{ current_user.username }} {% endif %} Takes</h3>
 
 <ul class="list-group">
   {% for take in takes %}

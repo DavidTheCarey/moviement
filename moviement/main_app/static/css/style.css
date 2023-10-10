@@ -107,7 +107,8 @@ nav {
 }
 
 .shot_picture {
-  width: 50vh;
+  width: 40%;
+  margin: 0 3px;
 }
 
 .clapboard {
